@@ -17,8 +17,14 @@ I have chosen a Batch Size of 32, a Cyclical Learning Rate with base_lr = 0.001 
 
 The Cyclical Learning Rate was done using the lr_scheduler.CyclicLR from torch.optim, and was used to remove the need to find an optimal learning rate in a way that is less computationally expensive as the Adaptive Learning Rate method.
 
-I am using the Stochastic Gradient Descent model to train my model parameters with the Cyclical Learning Rate and Momentum. I am using SGD since regular Gradient Descent is more computationally expensive and leads to slower convergence to the global minimum of the gradient, even if it may result in higher accuracy. The purpose of Momentum is to increase performance and efficiency by allowing the algorithm to build inertia in order to avoid oscillations in messy gradients and quickly pass over smooth areas.
+I am using the Stochastic Gradient Descent method as my Gradient Optimizer to train my model parameters with the Cyclical Learning Rate and Momentum. I am using SGD since regular Gradient Descent is more computationally expensive and leads to slower convergence to the global minimum of the gradient, even if it may result in higher accuracy. The purpose of Momentum is to increase performance and efficiency by allowing the algorithm to build inertia in order to avoid oscillations in messy gradients and quickly pass over smooth areas.
 
-I am use Cross Entropy Loss as my Loss Criterion, as it is better suited for multi-class classification problems since it uses the SoftMax activation function. The SoftMax activation function takes in data from the output layer of the model, and converts it into a vector with corresponding probabilities. The highest probability is the model prediction. I am using Cross Entropy Loss as opposed to BCELoss, which is better for binary classification.
+I am using Cross Entropy Loss as my Loss Criterion, as it is better suited for multi-class classification problems since it uses the SoftMax activation function. The SoftMax activation function takes in data from the output layer of the model, and converts it into a vector with corresponding probabilities. The highest probability is the model prediction. I am using Cross Entropy Loss as opposed to BCELoss, which is better for binary classification.
 
-I have a separate function which trains the model to the Cifar10 data called train_model. This function takes in the model, training and validation DataLoaders, Loss Criterion, 
+I chose 10 epochs, since I wanted to avoid overtraining the model on the training set.
+
+I have a separate function which trains the model to the Cifar10 data called train_model. This function takes in the model, training and validation DataLoaders, Loss Criterion, Gradient Optimizer, and # of Epochs. The function trains the data according to the number of epochs and the training batch size. For each epoch, it makes predictions for the validation set, which is used to record the cost and accuracy of the model as it is being trained. It uses tqdm and print statements to output relevant information such as learning rate, validation cost, validation accuracy, and epoch # for each run of the training data and show progress.
+
+## Cost v Accuracy Graph
+
+The train_model function also outputs the cost and accuracy for each epoch as a list. This is then graphed as a Cost v Accuracy figure to show how the progress of the model predictions as it is trained to the data.
