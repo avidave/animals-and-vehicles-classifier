@@ -7,13 +7,13 @@ The dataset provided by HuggingFace already has separate training and validation
 
 The image data has the features: "img" and "label" which I am treating as the model input and prediction respectively.
 
-The training set DataLoader will fead data in batch sizes of 32. I have used this batch size to avoid overfitting the model to the data or get the model gradient optimizer to be attracted to saddle points, that may occur with larger batch sizes.
+The training set DataLoader will fead data in batch sizes of 16. I have used this batch size to avoid overfitting the model to the data or get the model gradient optimizer to be attracted to saddle points, that may occur with larger batch sizes.
 
 ## Training the model
 
 The ResNet18 model that I have loaded has already been pretrained on large datasets.
 
-I have chosen a Batch Size of 32, a Cyclical Learning Rate with base_lr = 0.001 and max_lr=0.01, a Momentum of 0.9, and 10 Epochs (for model training).
+I have chosen a Batch Size of 16, a Cyclical Learning Rate with base_lr = 0.001 and max_lr=0.01, a Momentum of 0.9, and 10 Epochs (for model training).
 
 The Cyclical Learning Rate was done using the lr_scheduler.CyclicLR from torch.optim, and was used to remove the need to find an optimal learning rate in a way that is less computationally expensive as the Adaptive Learning Rate method.
 
